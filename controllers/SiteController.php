@@ -9,6 +9,8 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+// signup form
+use app\models\SignupForm;
 
 class SiteController extends Controller
 {
@@ -62,6 +64,16 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    public function actionSignup()
+    {
+        $model = new SignupForm;
+        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+            Yii::$app->session->setFlash('success', 'Thank you for registration.');
+            return $this->goHome();
+        }
+        return $this->render('signup', ['model' => $model]);
     }
 
     /**
