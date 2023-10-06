@@ -13,6 +13,7 @@ use Yii;
  */
 class Libro extends \yii\db\ActiveRecord
 {
+    public $archivo;
     /**
      * {@inheritdoc}
      */
@@ -27,9 +28,11 @@ class Libro extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['titulo', 'image'], 'required'],
+            [['titulo'], 'required'],
             [['titulo'], 'string', 'max' => 255],
-            [['image'], 'string', 'max' => 2500],
+            // [['image'], 'string', 'max' => 2500],
+            // creamos un input file
+            [['archivo'], 'file', 'extensions' => 'png,jpg']
         ];
     }
 
@@ -41,7 +44,8 @@ class Libro extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'titulo' => 'Titulo',
-            'image' => 'Image',
+            // 'image' => 'Image',
+            'archivo' => 'Imagen'
         ];
     }
 }
