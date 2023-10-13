@@ -16,6 +16,7 @@ class EntryForm extends Model
     public $items;
     public $gender;
     public $country;
+    public $state;
 
     public function rules()
     {
@@ -33,9 +34,9 @@ class EntryForm extends Model
             // files
             [['inputFiles'], 'file', 'extensions' => 'jpg,png,gif', 'message' => 'Solo puede ingresar archivos con extension jpg,png,gif'],
             // validate in line
-            [['country'], 'validateCountry'],
+            // [['country'], 'validateCountry'],
             // validate client 
-            [['country'], 'in', 'range' => ['USA', 'Web'], 'message' => 'El país debe ser "USA" o "Web".'],
+            // [['country'], 'in', 'range' => ['USA', 'Web'], 'message' => 'El país debe ser "USA" o "Web".'],
 
         ];
     }

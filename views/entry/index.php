@@ -1,8 +1,11 @@
 <?php
 
+use app\models\StateSudaCountry;
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
 use yii\widgets\ActiveFormAsset;
+use app\models\SudaCountry;
+use yii\helpers\ArrayHelper;
 
 ActiveFormAsset::register($this);
 ?>
@@ -20,6 +23,18 @@ ActiveFormAsset::register($this);
     <li class="list-group-item">
         <h4>Lista desplegable</h4>
         <?= $form->field($model, 'gender')->dropDownList(['m' => 'Male', 'f' => 'Female'], ['prompt' => 'Select Gender']) ?>
+    </li>
+    <li class="list-group-item">
+        <h4>Lista desplegable desde DB</h4>
+        <?= $form->field($model, 'country')->dropDownList(
+            ArrayHelper::map(SudaCountry::find()->all(), 'country_id', 'country'),
+            ['prompt' => 'Select Country', 'onchange' => '$.post("index?r=entry/lists&id=' . '"+$(this).val(), function(data){$("select#state").html(data);});']
+        );
+        ?>
+    </li>
+    <li class="list-group-item">
+        <h4>Lista desplegable desde DB</h4>
+        <?= $form->field($model, 'state')->dropDownList(ArrayHelper::map(StateSudaCountry::find()->all(), 'fk_country', 'state'), ['prompt' => 'Select State']) ?>
     </li>
     <li class="list-group-item">
         <h4>Lista de radio</h4>
