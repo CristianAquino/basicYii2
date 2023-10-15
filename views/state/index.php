@@ -43,8 +43,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             // 'state_id',
             'state',
+            [
+                'attribute' => 'fk_country',
+                'value' => 'fkCountry.country'
+
+            ],
             // reemplazamos el id por el nombre del pais
-            'fkCountry.country',
+            // lo malo es que remueve el filtro de busqueda
+            // 'fkCountry.country',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, State $model, $key, $index, $column) {

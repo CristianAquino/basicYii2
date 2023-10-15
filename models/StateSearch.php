@@ -17,8 +17,8 @@ class StateSearch extends State
     public function rules()
     {
         return [
-            [['state_id', 'fk_country'], 'integer'],
-            [['state'], 'safe'],
+            [['state_id'], 'integer'],
+            [['state', 'fk_country'], 'safe'],
         ];
     }
 
@@ -55,14 +55,20 @@ class StateSearch extends State
             // $query->where('0=1');
             return $dataProvider;
         }
+        // revisar con que nombre del metodo tiene realizado el modelo State
+        // la relacion entre country y state
+        // empieza con minuscula
+        $query->joinWith('fkCountry');
 
         // grid filtering conditions
         $query->andFilterWhere([
             'state_id' => $this->state_id,
-            'fk_country' => $this->fk_country,
+            // 'fk_country' => $this->fk_country,
         ]);
 
-        $query->andFilterWhere(['like', 'state', $this->state]);
+        $query->andFilterWhere(['like', 'state', $this->state])
+            // solo ponemos country y no Country.country
+            ->andFilterWhere(['like', 'country', $this->fk_country]);
 
         return $dataProvider;
     }
