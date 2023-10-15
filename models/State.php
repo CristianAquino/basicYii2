@@ -30,9 +30,9 @@ class State extends \yii\db\ActiveRecord
     {
         return [
             [['state', 'fk_country'], 'required'],
-            [['fk_country'], 'integer'],
+            // [['fk_country'], 'integer'],
             [['state'], 'string', 'max' => 100],
-            [['fk_country'], 'exist', 'skipOnError' => true, 'targetClass' => SudaCountry::class, 'targetAttribute' => ['fk_country' => 'country_id']],
+            // [['fk_country'], 'exist', 'skipOnError' => true, 'targetClass' => SudaCountry::class, 'targetAttribute' => ['fk_country' => 'country_id']],
         ];
     }
 
@@ -44,7 +44,7 @@ class State extends \yii\db\ActiveRecord
         return [
             'state_id' => 'State ID',
             'state' => 'State',
-            'fk_country' => 'Fk Country',
+            'fk_country' => 'Country Name',
         ];
     }
 
