@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Country;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -31,7 +32,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'state_id',
             'state',
-            'fk_country',
+            // 'fk_country',
+            // editando data
+            [
+                'label' => 'Country',
+                'value' => Country::find()->where(['country_id' => $model->fk_country])->one()->country,
+            ],
         ],
     ]) ?>
 

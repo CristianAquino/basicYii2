@@ -1,7 +1,9 @@
 <?php
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\Country;
 
 /** @var yii\web\View $this */
 /** @var app\models\State $model */
@@ -14,7 +16,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'state')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'fk_country')->textInput() ?>
+    <!-- iteramos los elementos de la tabla country en un droplist para poder seleccionarlos  -->
+    <?= $form->field($model, 'fk_country')->dropDownList(ArrayHelper::map(Country::find()->all(), 'country_id', 'country'), ['prompt' => 'Select Country']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
