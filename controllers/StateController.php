@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Country;
 use app\models\State;
 use app\models\StateSearch;
 use yii\web\Controller;
@@ -70,7 +71,12 @@ class StateController extends Controller
         $model = new State();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load($this->request->post())) {
+                $country = Country::find()->where(['country' => $model->fk_country])->one();
+                if ($country) {
+                    $model->fk_country = $country->country_id;
+                }
+                $model->save();
                 return $this->redirect(['view', 'state_id' => $model->state_id]);
             }
         } else {
