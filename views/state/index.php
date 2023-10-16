@@ -12,15 +12,31 @@ use yii\grid\GridView;
 
 $this->title = 'States';
 $this->params['breadcrumbs'][] = $this->title;
+
+// agregamos el modal
+use yii\bootstrap5\Modal;
 ?>
 <div class="state-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
+    <!-- <p>
         <?= Html::a('Create State', ['create'], ['class' => 'btn btn-success']) ?>
+    </p> -->
+    <!-- para el modal -->
+    <p>
+        <?= Html::button('Create State', ['value' => Url::to('index.php?r=state/create'), 'class' => 'btn btn-success', 'id' => 'modalButton']) ?>
     </p>
+    <?php Modal::begin([
+        'size' => 'modal-lg',
+        'id' => 'modal'
+    ]);
+    // en el div se colocara todo lo que contenga la ruta
+    // e ahi la importancia del id que se utilizara en el js
+    echo "<div id='modalContent'></div>";
 
+    Modal::end();
+    ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); 
     ?>
 

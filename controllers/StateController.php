@@ -82,10 +82,14 @@ class StateController extends Controller
         } else {
             $model->loadDefaultValues();
         }
-
-        return $this->render('create', [
+        // editamos para que tenga una mejor
+        // visualizacion en el modal
+        return $this->renderAjax('create', [
             'model' => $model,
         ]);
+        // return $this->render('create', [
+        //     'model' => $model,
+        // ]);
     }
 
     /**

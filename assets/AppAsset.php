@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -22,7 +23,9 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/site.css',
     ];
+    // agregamos el js para el modal
     public $js = [
+        'js/main.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',
