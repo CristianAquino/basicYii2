@@ -122,6 +122,22 @@ class StateController extends Controller
         return $this->redirect(['index']);
     }
 
+    // action necesario para listar los estados de un pais
+    // que seran visualizado en el formulario
+    public function actionLists($id)
+    {
+        $countState = State::find()->where(['fk_country' => $id])->count();
+        $state = State::find()->where(['fk_country' => $id])->all();
+
+        if ($countState > 0) {
+            foreach ($state as $s) {
+                echo "<option value='$s->state_id'>$s->state</option>";
+            }
+        } else {
+            echo "<option value=''>No State</option>";
+        }
+    }
+
     /**
      * Finds the State model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

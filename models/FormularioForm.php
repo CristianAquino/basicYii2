@@ -8,6 +8,9 @@ class FormularioForm extends Model
 {
     public $valorA;
     public $valorB;
+    // variables para formulario
+    public $country;
+    public $state;
 
     public function rules()
     {
@@ -22,6 +25,7 @@ class FormularioForm extends Model
         return [
             'valorA' => 'Ingreser el primer numero',
             'valorB' => 'Ingreser el segundo numero',
+            'country' => 'Seleccione un pais',
         ];
     }
 }
