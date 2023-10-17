@@ -15,6 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 // agregamos el modal
 use yii\bootstrap5\Modal;
+use yii\widgets\Pjax;
+
 ?>
 <div class="state-index">
 
@@ -39,7 +41,8 @@ use yii\bootstrap5\Modal;
     ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); 
     ?>
-
+    <!-- realizamos esto para realizar el refresh con el submitting -->
+    <?php Pjax::begin(['id' => 'stateGrid']); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,

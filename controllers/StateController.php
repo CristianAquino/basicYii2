@@ -76,8 +76,14 @@ class StateController extends Controller
                 if ($country) {
                     $model->fk_country = $country->country_id;
                 }
-                $model->save();
-                return $this->redirect(['view', 'state_id' => $model->state_id]);
+                // $model->save();
+                // return $this->redirect(['view', 'state_id' => $model->state_id]);
+                // codigo para realizar submitting con ajax
+                if ($model->save()) {
+                    echo 1;
+                } else {
+                    echo 0;
+                }
             }
         } else {
             $model->loadDefaultValues();
